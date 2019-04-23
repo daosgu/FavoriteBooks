@@ -114,7 +114,7 @@ class Book(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     
-    uploadBy = models.ForeignKey(User, related_name = "bookUploaded")
+    uploadBy = models.ForeignKey(User, on_delete=models.PROTECT, related_name = "bookUploaded")
     # BE CAREFUL WITH THE VARIABLE NAME WHIT THE RELATIONS MANY TO MANY ---> IT HAS TO BE WHIT PLURAL (s)
     userLikes = models.ManyToManyField(User, related_name = "likesBooks")
 

@@ -137,3 +137,9 @@ function validateForm()
      if(!validation)
         event.preventDefault()
 }
+
+function deleteBook()
+{
+    if(!confirm("Are you sure you want to delete this Book?"))
+        event.preventDefault()
+}

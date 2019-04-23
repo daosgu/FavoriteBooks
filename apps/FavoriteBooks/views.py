@@ -187,5 +187,7 @@ def updateBook(request, idBook):
     return redirect("/load")
 
 
-def deleteBook(request):
-    pass
+def deleteBook(request, idBook):
+    reg = Book.objects.get(id = idBook)
+    reg.delete()
+    return redirect("/load")

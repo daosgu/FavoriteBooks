@@ -43,18 +43,20 @@
         <p>Add by <span class="normalClass">{{ book.uploadBy.firstName }} {{ book.uploadBy.lastName }}</span></p>
         <p>Added on: <span class="normalClass">{{ book.created_at|date:'Y-m-d H:i' }} </span></p>
         <p>Last updated on: <span class="normalClass">{{ book.updated_at|date:'Y-m-d H:i' }} </span></p>
-        <p>Description</p> 
+        <p>Description</p>
         {% if book.uploadBy.id == request.session.id %}
             <form action="/books/update/{{book.id}}" method="POST">
                 {% csrf_token %}
                 <textarea name="description" id="description" cols="50" rows="5">{{ book.description }}</textarea>
                 <br><br>
                 <button class="btn-info">Update</button>
-                <button class="btn-danger" formaction="/books/delete/{{book.id}}">Delete</button>
+                <button class="btn-danger" onclick="deleteBook();" formaction="/books/delete/{{book.id}}">Delete</button>
             </form>
         {% else %}
             <p><span class="normalClass">{{ book.description }}</span></p>
         {% endif %}
+        <br>
+        <a href="/load">Go Back</a>
         </div>
         <div id="books">
             <h3>Users Who Likes This Book</h3>
