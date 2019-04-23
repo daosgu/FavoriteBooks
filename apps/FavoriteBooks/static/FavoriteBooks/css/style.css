@@ -1,0 +1,177 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#container{
+    width: 100%;
+}
+
+#regForm{
+    width: 350px;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+    background:linear-gradient(30deg, 
+            rgba(255, 166, 0, 0.500), 
+            rgba(128, 0, 128, 0.200), 
+            rgba(0, 128, 0, 0.300));
+    /* background:radial-gradient(center center, ellipse, red 25%, peru 26%, black 26%);
+    background:radial-gradient(200px top, ellipse, white, #1162ac, black); */
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 3px;
+}
+
+p{
+    font-weight: bold;
+    display: inline-block;
+    width: 100px;
+}
+
+.optSmall{
+    width: 30px;
+    height: auto;
+}
+
+input, select{
+    width: 200px;
+    height: 25px;
+}
+
+#login{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: 15px;
+}
+
+nav.acceder ul{
+    list-style: none;
+    position: relative;
+}
+
+#loginContent{
+    position: absolute;
+    top: 26px;
+    background:linear-gradient(30deg, 
+            rgba(255, 166, 0, 0.500), 
+            rgba(128, 0, 128, 0.200), 
+            rgba(0, 128, 0, 0.300));
+    padding: 15px;
+    width: 250px;
+    border-radius: 0px 10px 10px 10px;
+    border: 2px solid black;
+}
+
+#userLogin, #passwordLogin{
+    background-color: #f1f1f1;
+    padding: 6px 5px;
+    margin-bottom: 10px;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button{
+    width: 80px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.perror{
+    margin: 0px 0px;
+    width: 350px;
+    color: red;
+    font-size: 11px;
+}
+/* LOGIN */
+
+
+#top{
+    width: 98%;
+    min-width: 1160px;
+    height: 45px;
+    display: inline-block;
+    background:linear-gradient(30deg,
+            rgba(8, 119, 8, 0.3),
+            rgba(17, 6, 170, 0.2));
+}
+
+#top h2{
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    margin: 5px 10px;
+}
+
+#top h4{
+    min-width: 280px;
+    vertical-align: top;
+    display: inline-block;
+    margin: 15px -5px;
+}
+
+#top a{
+    top: 8px;
+    left: 90%;
+    position: absolute;
+}
+
+#addBook{
+    min-width: 400px;
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px 10px;
+    padding: 0px 10px;
+}
+
+#books{
+    height: 520px;
+    overflow: auto;
+    min-width: 400px;
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px 10px;
+    padding: 0px 10px;
+}
+
+#addBook p{
+    width: 90%;
+    margin: 5px 2px;
+}
+
+#title{
+    width: 377px;
+    margin: 0px 0px 15px 0px;
+}
+
+#books p{
+    width: 90%;
+}
+   
+#books span{
+    width: 95%;
+    display: block;
+    position: relative;
+    top: -10px;
+    left: 15px;
+}
+
+.addBookLink{
+    font-size: 12px;
+    position: relative;
+    top: -10px;
+    left: 15px;
+}
+
+li{
+    margin: 0px 30px;
+    list-style-type: square;
+}
+
+.normalClass{
+    font-weight: lighter;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% load static %}		<!-- added this line -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+    <!-- Optional theme --> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript --> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- This line works with the server localhost -->
+    
+    <link rel="stylesheet" href="{% static 'FavoriteBooks/css/style.css' %}">
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.0.js"
+        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+        crossorigin="anonymous"></script>
+        <!-- Script to allow working with dates easy -->
+        <script src="http://momentjs.com/downloads/moment.min.js"></script>
+
+
+    <script  src="{% static 'FavoriteBooks/js/functions.js' %}"></script>
+    
+    <title>The Books</title>
+</head>
+<body id="bodyShow">
+    <div id="container">
+        <div id="top">
+            <h2>Welcome, </h2>
+            <h4>{{ request.session.firstName }} {{ request.session.lastName }}</h4>
+            <a href="/logOut"><button class="btn-info">Log Out</button></a>
+        </div>
+        <div id="addBook">
+        <h3>{{ book.title }}</h3>
+        <p>Add by <span class="normalClass">{{ book.uploadBy.firstName }} {{ book.uploadBy.lastName }}</span></p>
+        <p>Added on: <span class="normalClass">{{ book.created_at|date:'Y-m-d H:i' }} </span></p>
+        <p>Last updated on: <span class="normalClass">{{ book.updated_at|date:'Y-m-d H:i' }} </span></p>
+        <p>Description</p> 
+        {% if book.uploadBy.id == request.session.id %}
+            <form action="/books/update/{{book.id}}" method="POST">
+                {% csrf_token %}
+                <textarea name="description" id="description" cols="50" rows="5">{{ book.description }}</textarea>
+                <br><br>
+                <button class="btn-info">Update</button>
+                <button class="btn-danger" formaction="/books/delete/{{book.id}}">Delete</button>
+            </form>
+        {% else %}
+            <p><span class="normalClass">{{ book.description }}</span></p>
+        {% endif %}
+        </div>
+        <div id="books">
+            <h3>Users Who Likes This Book</h3>
+            <ul>
+                {% for likes in book.userLikes.all %}
+                    {% if likes.id != request.session.id %}
+                        <li>{{ likes.firstName }} {{ likes.lastName }}</li>
+                    {% endif %}
+                {% endfor %}
+                {% if user not in likes %}
+                <br>
+                    <a href="/addFavorite/{{book.id}}" class="addBookLink">Add to Favorites</a>
+                {% else %}
+                    <br>
+                    <a href="/unFavorite/{{book.id}}" class="addBookLink">Un-Favorite</a>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

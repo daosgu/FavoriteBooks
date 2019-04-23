@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Dojo Survey" content="My First Form With Flask and Post">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% load static %}		<!-- added this line -->
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+        <!-- Optional theme --> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified JavaScript --> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!-- This line works with the server localhost -->
+        
+        <link rel="stylesheet" href="{% static 'FavoriteBooks/css/style.css' %}">
+
+        <script
+        src="https://code.jquery.com/jquery-3.4.0.js"
+        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+        crossorigin="anonymous"></script>
+        <!-- Script to allow working with dates easy -->
+        <script src="http://momentjs.com/downloads/moment.min.js"></script>
+
+
+        <script  src="{% static 'FavoriteBooks/js/functions.js' %}"></script>
+
+
+        <title>Favorite Books</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="regForm">
+                <form name="regFormUser" id="regFormUser" action="/user/new" method="POST"> 
+                    {% csrf_token %}
+                    <h3>Register Form</h3>
+                    
+                    <p class="perror" id="fnameError">
+                        {% for key in messages %}
+                            {% if key.tags == "firstName error" %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </P>
+                    <p>First Name </p>
+                    <input type="text" id="fname" name="fname" value="">
+
+
+                    <p class="perror" id="lnameError">
+                        {% for key in messages %}
+                            {% if key.tags == "lastName error" %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>Last Name </p>
+                    <input type="text" id="lname" name="lname" value="">
+
+                    <p class="perror"></p>
+                    <p> Gender </p>
+                        <input type="radio" name="gender" id="male" class="optSmall" value="1" checked> Male
+                        <input type="radio" name="gender" id="female" class="optSmall" value="2"> Female
+                    
+                    <p class="perror" id="birthdayError">
+                        {% for key in messages %}
+                            {% if key.tags == "birthday error" %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>Birthday</p>
+                    <input type="date" id="birthday" name="birthday" value="">
+                    
+                    <p class="perror" id="emailError">
+                    </p>        
+                    <p>Email</p>
+                    <input type="text" id="email" name="email" value="">
+
+                    
+                    <p class="perror" id="userError"></p>
+                    <p>User </p>
+                    <input type="text" id="user" name="user" value="">
+
+                    <p class="perror" id="passwordError">
+                        {% for key in messages %}
+                            {% if key.tags == "password error" %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>Password </p>
+                    <input type="password" id="password" name="password">
+                    <p class="perror"></p>
+                    <p>Re - Password </p>
+                    <input type="password" id="repassword" name="repassword">
+                    <p class="perror"></p>
+                    <button class="btn-warning" id="btnSubForm" type="submit" onclick="validateForm()">Submit</button>
+                </form>
+            </div> 
+            <div id="login">
+                <a id="loginToggle" href="#" onclick="sldTogg('loginContent')">Access</a>
+                <div id="loginContent">
+                    <form id="other" action="/login" method="POST">
+                        {% csrf_token %}
+                        {% for key in messages %}
+                            {% if key.tags == "passwordLogin error" %}
+                                <p class="perror">{{ key }} </p>
+                            {% endif %}
+                        {% endfor %}
+                        <input type="text" id="userLogin" required name="userLogin" value="Daosgu27" placeholder="User">
+                        <input type="password" id="passwordLogin" required name="passwordLogin" value="Rossty1706???" placeholder="Password">
+                        <button class="btn-warning" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
